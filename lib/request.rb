@@ -34,6 +34,13 @@ module PaypalAdaptive
       PaypalAdaptive::Response.new(response_data, @env)
     end
 
+    def execute_payment(data)
+      raise NoDataError unless data
+
+      response_data = call_api(data, "/AdaptivePayments/ExecutePayment")
+      PaypalAdaptive::Response.new(response_data, @env)
+    end
+
     def set_payment_options(data)
       raise NoDataError unless data
 
